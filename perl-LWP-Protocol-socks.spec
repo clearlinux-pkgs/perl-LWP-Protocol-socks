@@ -4,24 +4,15 @@
 #
 Name     : perl-LWP-Protocol-socks
 Version  : 1.7
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/S/SC/SCR/LWP-Protocol-socks-1.7.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SC/SCR/LWP-Protocol-socks-1.7.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblwp-protocol-socks-perl/liblwp-protocol-socks-perl_1.7-1.debian.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Artistic-1.0 GPL-1.0
-Requires: perl-LWP-Protocol-socks-license
-Requires: perl-LWP-Protocol-socks-man
-Requires: perl(HTTP::Status)
-Requires: perl(IO::Socket::SSL)
-Requires: perl(IO::Socket::Socks)
-Requires: perl(LWP)
-Requires: perl(LWP::Protocol::https)
-Requires: perl(Net::HTTP)
-Requires: perl(Net::SSLeay)
-Requires: perl(Try::Tiny)
-Requires: perl(URI)
+Requires: perl-LWP-Protocol-socks-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(HTTP::Status)
 BuildRequires : perl(IO::Socket::SSL)
 BuildRequires : perl(IO::Socket::Socks)
@@ -37,6 +28,15 @@ LWP-Protocol-socks
 ===============================
 FYI, files are checked into git@github.com:scr/cpan.git
 
+%package dev
+Summary: dev components for the perl-LWP-Protocol-socks package.
+Group: Development
+Provides: perl-LWP-Protocol-socks-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-LWP-Protocol-socks package.
+
+
 %package license
 Summary: license components for the perl-LWP-Protocol-socks package.
 Group: Default
@@ -45,19 +45,11 @@ Group: Default
 license components for the perl-LWP-Protocol-socks package.
 
 
-%package man
-Summary: man components for the perl-LWP-Protocol-socks package.
-Group: Default
-
-%description man
-man components for the perl-LWP-Protocol-socks package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n LWP-Protocol-socks-1.7
-mkdir -p %{_topdir}/BUILD/LWP-Protocol-socks-1.7/deblicense/
+cd ..
+%setup -q -T -D -n LWP-Protocol-socks-1.7 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/LWP-Protocol-socks-1.7/deblicense/
 
 %build
@@ -82,12 +74,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-LWP-Protocol-socks
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-LWP-Protocol-socks/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-LWP-Protocol-socks
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-LWP-Protocol-socks/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -96,17 +88,17 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/LWP/Protocol/socks.pm
-/usr/lib/perl5/site_perl/5.26.1/LWP/Protocol/socks4.pm
-/usr/lib/perl5/site_perl/5.26.1/URI/socks.pm
-/usr/lib/perl5/site_perl/5.26.1/URI/socks4.pm
+/usr/lib/perl5/vendor_perl/5.26.1/LWP/Protocol/socks.pm
+/usr/lib/perl5/vendor_perl/5.26.1/LWP/Protocol/socks4.pm
+/usr/lib/perl5/vendor_perl/5.26.1/URI/socks.pm
+/usr/lib/perl5/vendor_perl/5.26.1/URI/socks4.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-LWP-Protocol-socks/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/LWP::Protocol::socks.3
 /usr/share/man/man3/LWP::Protocol::socks4.3
 /usr/share/man/man3/URI::socks.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-LWP-Protocol-socks/deblicense_copyright

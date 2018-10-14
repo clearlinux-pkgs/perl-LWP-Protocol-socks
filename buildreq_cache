@@ -1,0 +1,10 @@
+1.7
+perl(HTTP::Status)
+perl(IO::Socket::SSL)
+perl(IO::Socket::Socks)
+perl(LWP)
+perl(LWP::Protocol::https)
+perl(Net::HTTP)
+perl(Net::SSLeay)
+perl(Try::Tiny)
+perl(URI)
