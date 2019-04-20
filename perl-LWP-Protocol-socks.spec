@@ -88,10 +88,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.1/LWP/Protocol/socks.pm
-/usr/lib/perl5/vendor_perl/5.28.1/LWP/Protocol/socks4.pm
-/usr/lib/perl5/vendor_perl/5.28.1/URI/socks.pm
-/usr/lib/perl5/vendor_perl/5.28.1/URI/socks4.pm
+/usr/lib/perl5/vendor_perl/5.28.2/LWP/Protocol/socks.pm
+/usr/lib/perl5/vendor_perl/5.28.2/LWP/Protocol/socks4.pm
+/usr/lib/perl5/vendor_perl/5.28.2/URI/socks.pm
+/usr/lib/perl5/vendor_perl/5.28.2/URI/socks4.pm
 
 %files dev
 %defattr(-,root,root,-)
