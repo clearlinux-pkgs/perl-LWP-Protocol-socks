@@ -4,7 +4,7 @@
 #
 Name     : perl-LWP-Protocol-socks
 Version  : 1.7
-Release  : 14
+Release  : 15
 URL      : https://cpan.metacpan.org/authors/id/S/SC/SCR/LWP-Protocol-socks-1.7.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SC/SCR/LWP-Protocol-socks-1.7.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblwp-protocol-socks-perl/liblwp-protocol-socks-perl_1.7-1.debian.tar.xz
@@ -87,7 +87,7 @@ make TEST_VERBOSE=1 test || :
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-LWP-Protocol-socks
-cp %{_builddir}/LWP-Protocol-socks-1.7/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-LWP-Protocol-socks/ac1acdbbe5dec9a636be62a2461d194f34d2cbab
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-LWP-Protocol-socks/ac1acdbbe5dec9a636be62a2461d194f34d2cbab
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -113,7 +113,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/LWP/Protocol/socks.pm
-/usr/lib/perl5/vendor_perl/5.30.1/LWP/Protocol/socks4.pm
-/usr/lib/perl5/vendor_perl/5.30.1/URI/socks.pm
-/usr/lib/perl5/vendor_perl/5.30.1/URI/socks4.pm
+/usr/lib/perl5/vendor_perl/5.30.2/LWP/Protocol/socks.pm
+/usr/lib/perl5/vendor_perl/5.30.2/LWP/Protocol/socks4.pm
+/usr/lib/perl5/vendor_perl/5.30.2/URI/socks.pm
+/usr/lib/perl5/vendor_perl/5.30.2/URI/socks4.pm
