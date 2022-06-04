@@ -4,7 +4,7 @@
 #
 Name     : perl-LWP-Protocol-socks
 Version  : 1.7
-Release  : 23
+Release  : 24
 URL      : https://cpan.metacpan.org/authors/id/S/SC/SCR/LWP-Protocol-socks-1.7.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/S/SC/SCR/LWP-Protocol-socks-1.7.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblwp-protocol-socks-perl/liblwp-protocol-socks-perl_1.7-1.debian.tar.xz
@@ -113,7 +113,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/LWP/Protocol/socks.pm
-/usr/lib/perl5/vendor_perl/5.34.0/LWP/Protocol/socks4.pm
-/usr/lib/perl5/vendor_perl/5.34.0/URI/socks.pm
-/usr/lib/perl5/vendor_perl/5.34.0/URI/socks4.pm
+/usr/lib/perl5/*
